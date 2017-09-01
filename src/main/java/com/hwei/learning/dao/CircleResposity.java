@@ -16,7 +16,7 @@ import com.hwei.learning.model.Circle;
 @Component
 public class CircleResposity {
 	
-	
+	@Autowired
 	private DataSource datasource;
 	private JdbcTemplate jdbcTemplate;
 	
@@ -31,8 +31,11 @@ public class CircleResposity {
 	}
 
 
-
-	/*public Circle queryCircleById(String value,int id) {
+	/**
+	 * Just use spring jdbc
+	 * 
+	 */
+	public Circle queryCircleById(String value,int id) {
 		
 		Circle circle=null;
 		Connection conn=null;
@@ -76,8 +79,12 @@ public class CircleResposity {
 		}
 		
 		return circle;	
-	}*/
+	}
 	
+	/**
+	 * Use spring jdbc template
+	 * 
+	 */
 	public Circle queryCircleById(int id) {
 		String sql = "select * from Circle where id = ?";
 		Circle circle = null;
