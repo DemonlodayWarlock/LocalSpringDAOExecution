@@ -5,12 +5,15 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
@@ -22,6 +25,7 @@ public class CircleResposity {
 	@Autowired
 	private DataSource datasource;
 	private JdbcTemplate jdbcTemplate;
+	private NamedParameterJdbcTemplate namedTemplate;
 	
 
 	public DataSource getDatasource() {
@@ -31,6 +35,7 @@ public class CircleResposity {
 	@Autowired
 	public void setDatasource(DataSource datasource) {
 		this.jdbcTemplate = new JdbcTemplate(datasource);
+		this.namedTemplate = new NamedParameterJdbcTemplate(datasource);
 	}
 
 
@@ -111,6 +116,23 @@ public class CircleResposity {
 		String sql = "select * from Circle";
 			
 		return jdbcTemplate.query(sql, new CircleMapper());	
+	}
+	
+	public void updateCircleName(String name,int id) {
+		String sql = "UPDATE circle set name=? where id = ?";
+		jdbcTemplate.update(sql, new Object[] {name,id});
+		
+	}
+	
+	public void insertCircle(Circle circle) {
+		String sql = "insert into circle (id,name) values (:id,:name)";
+		Map map = new HashMap<String,Object>();
+		map.put("id", circle.getId());
+		map.put("name", circle.getName());
+		namedTemplate.update(sql, map);
+		
+		//jdbcTemplate.update(sql, new Object[] {circle.getId(),circle.getName()});
+		
 	}
 	
 	private static final class CircleMapper implements RowMapper<Circle>{
