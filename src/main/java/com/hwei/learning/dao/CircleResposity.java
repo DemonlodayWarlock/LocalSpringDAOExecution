@@ -5,16 +5,16 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.hwei.learning.model.Circle;
 
+@Component
 public class CircleResposity {
 	
-	
+	@Autowired
 	private DataSource datasource;
 	
 	public void setDatasource(DataSource datasource) {

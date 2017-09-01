@@ -11,7 +11,7 @@ public class DataAccess {
 	public static void main(String[] args) {
 		
 		ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
-		CircleResposity reposity = (CircleResposity)context.getBean("circleResposity"); 
+		CircleResposity reposity = context.getBean("circleResposity",CircleResposity.class); 
 			
 		System.out.println(reposity.queryCircleById("First record",1).getName());
 		
