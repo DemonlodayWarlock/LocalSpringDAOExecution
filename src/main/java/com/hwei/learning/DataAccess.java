@@ -14,9 +14,13 @@ public class DataAccess {
 		CircleResposity reposity = context.getBean("circleResposity",CircleResposity.class); 
 		
 		
-		System.out.println(reposity.queryCircleById("First record",1).getName());
+		System.out.println("Spring jdbc:"+reposity.queryCircleById("First record",1).getName());
 		
-		System.out.println(reposity.queryCircleById(1).getName());
+		System.out.println("Spring JdbcTemplate:"+reposity.queryCircleById(1).getName());
+		
+		System.out.println("Spring RowMapper to query object:"+reposity.queryCircleWithId(1).getName());
+		
+		System.out.println("Spring RowMapper to query List"+reposity.queryCircles().toString());
 		
 	}
 

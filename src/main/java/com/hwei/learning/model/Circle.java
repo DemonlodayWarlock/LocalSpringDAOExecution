@@ -4,6 +4,7 @@ public class Circle {
 	
 	private int id;
 	private String name;
+	
 	public int getId() {
 		return id;
 	}
@@ -20,6 +21,14 @@ public class Circle {
 	public Circle(int id,String name) {
 		setId(id);
 		setName(name);
+	}
+	
+	public Circle() {}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "id:"+id+","+"name:"+name;
 	}
 
 }

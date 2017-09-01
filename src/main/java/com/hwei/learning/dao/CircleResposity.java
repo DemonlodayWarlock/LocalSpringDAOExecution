@@ -5,9 +5,12 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
+
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
@@ -96,6 +99,33 @@ public class CircleResposity {
 		
 		return circle;		
 	}
+	
+	public Circle queryCircleWithId(int id) {
+		String sql = "select * from Circle where id = ?";
+		return jdbcTemplate.queryForObject(sql, new Object[] {id}, new CircleMapper());
+		
+	}
+	
+	public List<Circle> queryCircles(){
+		
+		String sql = "select * from Circle";
+			
+		return jdbcTemplate.query(sql, new CircleMapper());	
+	}
+	
+	private static final class CircleMapper implements RowMapper<Circle>{
+
+		@Override
+		public Circle mapRow(ResultSet rs, int rowNum) throws SQLException {
+			Circle circle = new Circle();
+			circle.setId(rs.getInt("id"));
+			circle.setName(rs.getString("name"));
+			
+			return circle;
+			
+		}
+		
+	}
 
 
 	public JdbcTemplate getJdbcTemplate() {
@@ -106,6 +136,7 @@ public class CircleResposity {
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
+	
 
 
 }
