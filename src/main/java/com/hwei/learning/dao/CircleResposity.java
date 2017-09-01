@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import com.hwei.learning.model.Circle;
@@ -14,14 +16,23 @@ import com.hwei.learning.model.Circle;
 @Component
 public class CircleResposity {
 	
-	@Autowired
+	
 	private DataSource datasource;
+	private JdbcTemplate jdbcTemplate;
 	
-	public void setDatasource(DataSource datasource) {
-		this.datasource = datasource;
+
+	public DataSource getDatasource() {
+		return datasource;
 	}
-	
-	public Circle queryCircleById(String value,int id) {
+
+	@Autowired
+	public void setDatasource(DataSource datasource) {
+		this.jdbcTemplate = new JdbcTemplate(datasource);
+	}
+
+
+
+	/*public Circle queryCircleById(String value,int id) {
 		
 		Circle circle=null;
 		Connection conn=null;
@@ -65,6 +76,28 @@ public class CircleResposity {
 		}
 		
 		return circle;	
+	}*/
+	
+	public Circle queryCircleById(int id) {
+		String sql = "select * from Circle where id = ?";
+		Circle circle = null;
+		SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, new Object[] {id});
+		while(rowSet.next()) {
+			String name = rowSet.getString("name");
+			circle = new Circle(id,name); 
+		}
+		
+		return circle;		
+	}
+
+
+	public JdbcTemplate getJdbcTemplate() {
+		return jdbcTemplate;
+	}
+
+
+	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
 	}
 
 

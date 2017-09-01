@@ -5,9 +5,9 @@ import com.hwei.learning.model.Circle;
 
 public class CircleServiceImpl {
 	
-	public Circle getCircle(String value,int id) {
+	/*public Circle getCircle(String value,int id) {
 		Circle circie = new CircleResposity().queryCircleById(value,id);	
 		return circie;	
-	}
+	}*/
 
 }
