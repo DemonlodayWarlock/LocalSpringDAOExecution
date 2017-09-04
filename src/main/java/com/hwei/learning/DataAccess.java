@@ -17,21 +17,21 @@ public class DataAccess {
 		CircleResposity reposity = context.getBean("circleResposity",CircleResposity.class); 
 		
 		
-		/*System.out.println("Spring jdbc:"+reposity.queryCircleById("First record",1).getName());
+		//System.out.println("Spring jdbc:"+reposity.queryCircleById("First record",1).getName());
 		
-		System.out.println("Spring JdbcTemplate:"+reposity.queryCircleById(1).getName());
+		//System.out.println("Spring JdbcTemplate:"+reposity.queryCircleById(1).getName());
 		
-		System.out.println("Spring RowMapper to query object:"+reposity.queryCircleWithId(1).getName());
+		System.out.println("Spring RowMapper to query object:"+reposity.queryCircleWithId(3).getName());
 		
-		System.out.println("Spring RowMapper to query List"+reposity.queryCircles().toString());
+		//System.out.println("Spring RowMapper to query List"+reposity.queryCircles().toString());
 		
-		reposity.updateCircleName("Already update it", 1);
+		//reposity.updateCircleName("Already update it", 1);
 		
-		System.out.println("After update:"+reposity.queryCircleById(1).getName());*/
+		//System.out.println("After update:"+reposity.queryCircleById(1).getName());
 		
-		reposity.insertCircle(new Circle(3,"Third record"));
+		//reposity.insertCircle(new Circle(6,"Six record"));
 		
-		System.out.println("Spring RowMapper to query List"+reposity.queryCircles().toString());
+		//System.out.println("Spring RowMapper to query List"+reposity.queryCircles().toString());
 		
 		
 	}

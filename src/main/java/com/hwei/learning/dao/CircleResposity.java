@@ -17,6 +17,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import com.hwei.learning.annotation.TransactionAnnotation;
 import com.hwei.learning.model.Circle;
 
 @Component
@@ -124,6 +125,7 @@ public class CircleResposity {
 		
 	}
 	
+	@TransactionAnnotation
 	public void insertCircle(Circle circle) {
 		String sql = "insert into circle (id,name) values (:id,:name)";
 		Map map = new HashMap<String,Object>();
