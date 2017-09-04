@@ -28,5 +28,9 @@
 	
 	<bean id="transactionAspect" class="com.hwei.learning.aspect.TransactionAspect"/>
 	
+	<bean id="jdbcTemplateImpl" class="com.hwei.learning.dao.JdbcTemplateImpl">
+		<property name="dataSource" ref="datasource"/> 
+	</bean>
+	
 
 </beans>
