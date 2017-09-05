@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 
 import com.hwei.learning.dao.CircleResposity;
+import com.hwei.learning.dao.HibernateDaoImpl;
 import com.hwei.learning.dao.JdbcTemplateImpl;
 import com.hwei.learning.model.Circle;
 import com.hwei.learning.service.CircleServiceImpl;
@@ -33,8 +34,12 @@ public class DataAccess {
 		
 		//System.out.println("Spring RowMapper to query List"+reposity.queryCircles().toString());
 		
-		JdbcTemplateImpl jdbcImpl = context.getBean("jdbcTemplateImpl",JdbcTemplateImpl.class);
-		System.out.println(jdbcImpl.queryCircleWithId(3));
+		//JdbcTemplateImpl jdbcImpl = context.getBean("jdbcTemplateImpl",JdbcTemplateImpl.class);
+		//System.out.println(jdbcImpl.queryCircleWithId(3));
+		
+		HibernateDaoImpl dao = context.getBean("hibernateDaoImpl",HibernateDaoImpl.class);
+		//System.out.println(dao);
+		System.out.println(dao.queryCircleWithId(4).getName());
 		
 		
 	}

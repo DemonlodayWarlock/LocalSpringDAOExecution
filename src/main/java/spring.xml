@@ -13,9 +13,7 @@
 	
 	
 	<context:annotation-config/>
-	
 	<context:component-scan base-package="com.hwei.learning"/>
-	
 	<aop:aspectj-autoproxy/>
 
 	
@@ -30,6 +28,18 @@
 	
 	<bean id="jdbcTemplateImpl" class="com.hwei.learning.dao.JdbcTemplateImpl">
 		<property name="dataSource" ref="datasource"/> 
+	</bean>
+	
+	
+	<!--Create session factory for hibernate  -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="datasource"/>
+		<property name="packagesToScan" value="com.hwei.learning.model"/>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="dialect">org.hibernate.dialect.MySQLDialect</prop>
+			</props>
+		</property>
 	</bean>
 	
 

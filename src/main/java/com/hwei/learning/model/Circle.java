@@ -1,7 +1,20 @@
 package com.hwei.learning.model;
 
+import java.lang.annotation.Annotation;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+
+/**
+ *  
+ * If want to integrate with Hibernate, need add annotation "@Entity" for model, and add {@link Annotation} "@Id" for property id.
+ * 
+ */
+
+@Entity
 public class Circle {
-	
+	@Id
 	private int id;
 	private String name;
 	
